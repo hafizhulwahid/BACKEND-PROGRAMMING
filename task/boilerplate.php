@@ -9,19 +9,18 @@ class Animal
 
     # method constructor - mengisi data awal
     # parameter: data hewan (array)
-    public function __construct($animals)
+    public function __construct($data)
     {
-        $this->animals = $animals;
+        $this->animals = $data;
     }
 
     # method index - menampilkan data animals
-    public function index($animals)
+    public function index()
     {
         # gunakan foreach untuk menampilkan data animals (array)
-        foreach ($data as $animals) {
-            echo $animals . '<br>';
+        foreach ($this->animals as $animal) {
+            echo "$animal <br>";
         }
-
     }
 
     # method store - menambahkan hewan baru
@@ -29,12 +28,19 @@ class Animal
     public function store($data)
     {
         # gunakan method array_push untuk menambahkan data baru
+        array_push($this->animals, $data);
+        $this->index();
+        return $this;
     }
 
     # method update - mengupdate hewan
     # parameter: index dan hewan baru
-    public function update($index, $data)
+    public function update($animal, $data)
     {
+        $anAnimal = $this->find($animal);
+        $this->animals[$anAnimal] = $data;
+        $this->index();
+        return $this;
     }
 
     # method delete - menghapus hewan
@@ -42,6 +48,14 @@ class Animal
     public function destroy($index)
     {
         # gunakan method unset atau array_splice untuk menghapus data array
+        $anAnimal = $this->find($index);
+        array_splice($this->animals, $anAnimal, 1);
+        $this->index();
+        return $this;
+    }
+
+    private function find($animal) {
+        return array_search($animal, $this->animals);
     }
 }
 
@@ -55,15 +69,12 @@ echo "<br>";
 
 echo "Store - Menambahkan hewan baru <br>";
 $animal->store('burung');
-$animal->index();
 echo "<br>";
 
 echo "Update - Mengupdate hewan <br>";
 $animal->update(0, 'Kucing Anggora');
-$animal->index();
 echo "<br>";
 
 echo "Destroy - Menghapus hewan <br>";
 $animal->destroy(1);
-$animal->index();
 echo "<br>";
