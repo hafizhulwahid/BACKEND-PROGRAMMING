@@ -1,40 +1,41 @@
-
 <?php
 
 # membuat class Animal
 class Animal
 {
     # property animals
-    public $animals;
+    public $ar_hewan;
+    public $data;
 
     # method constructor - mengisi data awal
     # parameter: data hewan (array)
-    public function __construct($animals)
+    public function __construct($data)
     {
-        $this->animals = $animals;
+        $this->data = $data;
+        $ar_hewan = $this->data;
     }
 
     # method index - menampilkan data animals
-    public function index($animals)
+    public function index()
     {
-        # gunakan foreach untuk menampilkan data animals (array)
-        foreach ($data as $animals) {
-            echo $animals . '<br>';
+        foreach($this->ar_hewan as $x) {
+            echo $x;
         }
-
     }
 
     # method store - menambahkan hewan baru
     # parameter: hewan baru
     public function store($data)
     {
-        # gunakan method array_push untuk menambahkan data baru
+        # gunakan method array_push untuk menambahkan data 
+        array_push($this->ar_hewan, $this->data);
     }
 
     # method update - mengupdate hewan
     # parameter: index dan hewan baru
     public function update($index, $data)
     {
+        $this->ar_hewan[$index] = $data;
     }
 
     # method delete - menghapus hewan
@@ -42,12 +43,13 @@ class Animal
     public function destroy($index)
     {
         # gunakan method unset atau array_splice untuk menghapus data array
+        unset($this->ar_hewan[$index]);
     }
 }
 
 # membuat object
 # kirimkan data hewan (array) ke constructor
-$animal = new Animal(["sapi", "kambing"]);
+$animal = new Animal(["Kucing", "Kambing"]);
 
 echo "Index - Menampilkan seluruh hewan <br>";
 $animal->index();
