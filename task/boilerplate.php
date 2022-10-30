@@ -77,4 +77,8 @@ echo "<br>";
 
 echo "Destroy - Menghapus hewan <br>";
 $animal->destroy(1);
+<<<<<<< HEAD
 echo "<br>";
+=======
+echo "<br>";
+>>>>>>> 15b87b9382e2bc8e10e5555e85902a589e605624
